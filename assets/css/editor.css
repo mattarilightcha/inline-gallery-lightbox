@@ -3,6 +3,9 @@
 .editor-styles-wrapper .igl-block .game-mod-images-more {
   min-height: 50px;
 }
+.editor-styles-wrapper .igl-block .game-mod-images-more {
+  display: none;
+}
 .editor-styles-wrapper .igl-block .igl-placeholder {
   min-height: 50px;
   display: flex;

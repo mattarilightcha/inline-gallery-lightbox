@@ -1,6 +1,7 @@
 (function(blocks, element, blockEditor, components, data){
   const el = element.createElement;
   const Fragment = element.Fragment;
+  const useState = element.useState;
   const MediaUpload = blockEditor.MediaUpload;
   const MediaUploadCheck = blockEditor.MediaUploadCheck;
   const InspectorControls = blockEditor.InspectorControls;
@@ -46,25 +47,27 @@
       };
 
       // preview grid
-      const gridStyle = { display:'grid', gridTemplateColumns:`repeat(${attributes.columns||4}, 1fr)`, gap: `${attributes.gap||10}px` };
+      const gridStyle = { gridTemplateColumns:`repeat(${attributes.columns||4}, 1fr)`, gap: `${attributes.gap||10}px` };
       const first = items.slice(0, attributes.maxInitial||8);
       const rest = items.slice(attributes.maxInitial||8);
+      const [showMore, setShowMore] = useState(false);
 
       return el(Fragment, {},
         el('div', blockProps,
           !items.length && el('div', { className:'igl-placeholder' }, '画像や動画を追加'),
-          el('div', { className:'game-mod-images', style: gridStyle },
+          el('div', { className:'game-mod-images', style: Object.assign({display:'grid'}, gridStyle) },
             first.map((it, idx)=> el('div', { className:'igl-item-preview', key:'f'+idx },
               it.type==='image' ? el('img',{src:it.url, alt:it.alt||''}) : el('div', { className:'thumb', style:{backgroundImage:`url(${it.thumbnail})`, backgroundSize:'cover'} }),
               el('button', { className:'igl-remove', onClick:()=>removeAt(idx) }, '×')
             ))
           ),
-          rest.length ? el('div', { className:'game-mod-images-more', style: gridStyle },
+          rest.length ? el('div', { className:'game-mod-images-more', style: Object.assign({display: showMore ? 'grid' : 'none'}, gridStyle) },
             rest.map((it, i)=> el('div', { className:'igl-item-preview', key:'r'+i },
               it.type==='image' ? el('img',{src:it.url, alt:it.alt||''}) : el('div', { className:'thumb', style:{backgroundImage:`url(${it.thumbnail})`, backgroundSize:'cover'} }),
               el('button', { className:'igl-remove', onClick:()=>removeAt(i + (attributes.maxInitial||8)) }, '×')
             ))
-          ) : null
+          ) : null,
+          rest.length ? el('button', { className:'game-mod-show-more', onClick: ()=> setShowMore(!showMore) }, showMore ? '閉じる' : `続き (${rest.length})`) : null
         ),
         el(InspectorControls, {},
           el(PanelBody, { title: 'メディア' },
