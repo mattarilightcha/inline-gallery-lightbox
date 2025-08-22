@@ -67,7 +67,7 @@ function igl_render_gallery_block( $attributes, $content, $block ) {
     $items      = isset($attributes['items']) ? $attributes['items'] : [];
     $columns    = max(1, intval($attributes['columns'] ?? 4));
     $gap        = max(0, intval($attributes['gap'] ?? 10));
-    $maxInitial = max(0, intval($attributes['maxInitial'] ?? 8));
+    $maxInitial = min(10, max(0, intval($attributes['maxInitial'] ?? 8)));
 
     if (empty($items)) {
         return '<div class="igl-empty">画像や動画が未設定です。</div>';
