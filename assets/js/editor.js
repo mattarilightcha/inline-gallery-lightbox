@@ -88,7 +88,7 @@
           el(PanelBody, { title: 'レイアウト' },
             el(RangeControl, { label:'列数', value: attributes.columns, onChange:(v)=>setAttributes({columns:v}), min:1, max:8 }),
             el(RangeControl, { label:'余白(px)', value: attributes.gap, onChange:(v)=>setAttributes({gap:v}), min:0, max:40 }),
-            el(RangeControl, { label:'初期表示数', value: attributes.maxInitial, onChange:(v)=>setAttributes({maxInitial:v}), min:0, max:100 }),
+            el(RangeControl, { label:'初期表示数 (最大10)', value: attributes.maxInitial, onChange:(v)=>setAttributes({maxInitial:v}), min:0, max:10 }),
           )
         )
       );
