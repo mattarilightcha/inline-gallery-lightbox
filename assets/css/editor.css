@@ -3,6 +3,16 @@
 .editor-styles-wrapper .igl-block .game-mod-images-more {
   min-height: 50px;
 }
+.editor-styles-wrapper .igl-block .igl-placeholder {
+  min-height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px dashed #ccc;
+  background: #fafafa;
+  color: #555;
+  margin-bottom: 10px;
+}
 .editor-styles-wrapper .igl-item-preview {
   position: relative;
   aspect-ratio: 3 / 2;
