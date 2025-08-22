@@ -17,6 +17,7 @@
   }
 
   blocks.registerBlockType('igl/gallery', {
+    apiVersion: 2,
     title: 'Inline Gallery Lightbox',
     icon: 'format-gallery',
     category: 'media',
@@ -51,6 +52,7 @@
 
       return el(Fragment, {},
         el('div', blockProps,
+          !items.length && el('div', { className:'igl-placeholder' }, '画像や動画を追加'),
           el('div', { className:'game-mod-images', style: gridStyle },
             first.map((it, idx)=> el('div', { className:'igl-item-preview', key:'f'+idx },
               it.type==='image' ? el('img',{src:it.url, alt:it.alt||''}) : el('div', { className:'thumb', style:{backgroundImage:`url(${it.thumbnail})`, backgroundSize:'cover'} }),
