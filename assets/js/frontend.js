@@ -1,5 +1,9 @@
 // Inline Gallery Lightbox - Frontend
 document.addEventListener("DOMContentLoaded", () => {
+  if (window.__IGL_INIT__ || document.querySelector(".game-mod-lightbox")) {
+    return;
+  }
+  window.__IGL_INIT__ = true;
   // ===== Lightbox scaffold =====
   const lightbox = document.createElement("div");
   lightbox.className = "game-mod-lightbox";
