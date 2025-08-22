@@ -4,6 +4,7 @@
   const MediaUpload = blockEditor.MediaUpload;
   const MediaUploadCheck = blockEditor.MediaUploadCheck;
   const InspectorControls = blockEditor.InspectorControls;
+  const useBlockProps = blockEditor.useBlockProps;
   const PanelBody = components.PanelBody;
   const Button = components.Button;
   const TextControl = components.TextControl;
@@ -27,6 +28,7 @@
     },
     edit: function(props){
       const { attributes, setAttributes } = props;
+      const blockProps = useBlockProps({ className: 'igl-block' });
       const items = attributes.items || [];
       const addImages = (imgs)=>{
         const next = imgs.map(img => ({ type:'image', id: img.id, url: img.url, alt: img.alt || '' }));
@@ -47,8 +49,8 @@
       const first = items.slice(0, attributes.maxInitial||8);
       const rest = items.slice(attributes.maxInitial||8);
 
-      return el(Fragment, {}, 
-        el('div', { className:'igl-block' },
+      return el(Fragment, {},
+        el('div', blockProps,
           el('div', { className:'game-mod-images', style: gridStyle },
             first.map((it, idx)=> el('div', { className:'igl-item-preview', key:'f'+idx },
               it.type==='image' ? el('img',{src:it.url, alt:it.alt||''}) : el('div', { className:'thumb', style:{backgroundImage:`url(${it.thumbnail})`, backgroundSize:'cover'} }),
