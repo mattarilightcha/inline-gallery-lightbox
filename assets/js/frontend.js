@@ -144,6 +144,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const more = block.querySelector(".game-mod-images-more");
     if (btnMore && more) {
       const cnt = more.querySelectorAll(".game-mod-image, .game-mod-video").length;
+      more.style.display = "none";
       btnMore.addEventListener("click", () => {
         const active = btnMore.classList.toggle("active");
         more.style.display = active ? "grid" : "none";

@@ -3,11 +3,18 @@
 /* Grid */
 .game-mod-images,
 .game-mod-images-more {
-  display: grid;
   margin-bottom: 20px;
   padding: 10px;
   border: 1px solid #eee;
   border-radius: 4px;
+}
+
+.game-mod-images {
+  display: grid;
+}
+
+.game-mod-images-more {
+  display: none;
 }
 
 @media (max-width: 600px) {
